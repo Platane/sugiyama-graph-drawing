@@ -1,4 +1,4 @@
-import sort from '../../../src//topologicalOrdering/kahn'
+import sort from '../../../src//topologicalOrdering'
 import expect from 'expect'
 
 

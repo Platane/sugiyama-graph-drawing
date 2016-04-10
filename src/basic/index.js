@@ -9,3 +9,9 @@ export const changeIndex = ( graph, index, _index ) => {
 
 export const clone = graph =>
     graph.map( arc => arc.slice() )
+
+export const inverse = graph => {
+    const _graph = graph.map( () => [] )
+    graph.forEach( (arc, a) => arc.forEach( b => _graph[b].push(a) ) )
+    return _graph
+}

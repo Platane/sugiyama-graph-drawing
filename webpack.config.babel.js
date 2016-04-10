@@ -7,7 +7,7 @@ module.exports = {
 
         process.env.BUNDLE
             ? {
-                'bundle' : './src/sugiyama'
+                'bundle' : './src'
             }
             : {
                 'demo' : [ './demo' ],
@@ -57,7 +57,7 @@ module.exports = {
         }),
 
         ...(
-            process.env.NODE_ENV = 'production'
+            process.env.NODE_ENV == 'production'
                 ? [ new webpack.optimize.UglifyJsPlugin({ compress: {warnings: false} }) ]
                 : []
         )

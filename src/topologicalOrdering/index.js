@@ -1,9 +1,7 @@
+import {inverse} from '../basic'
+// sort graph using kahn algorithm
 
-const inverseGraph = graph => {
-    const _graph = graph.map( () => [] )
-    graph.forEach( (arc, a) => arc.forEach( b => _graph[b].push(a) ) )
-    return _graph
-}
+
 
 /**
  *
@@ -20,7 +18,7 @@ const inverseGraph = graph => {
  */
 const sort = ( graph ) => {
 
-    const _graph    = inverseGraph( graph )
+    const _graph    = inverse( graph )
     const removed   = []
 
     const res = []

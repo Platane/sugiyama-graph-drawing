@@ -4,7 +4,7 @@ import {addDummy}       from './layering/addDummy'
 import {clone}          from '../basic'
 
 
-export const position = graph => {
+const computePosition = graph => {
 
     graph = clone( graph )
 
@@ -28,3 +28,5 @@ export const position = graph => {
 
     return { position, graph }
 }
+
+export default computePosition

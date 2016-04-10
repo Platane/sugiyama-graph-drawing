@@ -1,4 +1,4 @@
-import sort                  from '../../topologicalOrdering/kahn'
+import sort                  from '../../topologicalOrdering'
 import {changeIndex}         from '../../basic'
 import {transitiveReduction} from './transitiveReduction'
 
