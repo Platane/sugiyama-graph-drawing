@@ -5,6 +5,7 @@ sudo: false
 branches:
   only:
     - master
+    - dev
 
 node_js:
   - "5"
@@ -15,35 +16,11 @@ install:
   - npm install
 
 
-script:
-    # test
-    - npm test
 
+after_success:
 
-    # build demo
-    - rm -r -f ./dist; webpack
+    # deploy demo
+    - test $TRAVIS_BRANCH = "master" && ./script/deploy-gh-pages.sh
 
-    # deploy demo to gh pages
-    - cd ./dist
-    - git init
-    - git config user.name "Travis CI"
-    - git config user.email "me@platane.me"
-    - git add .
-    - git commit -m "Deploy to GitHub Pages"
-    - git push --force --quiet "https://${GH_TOKEN}@${GH_REF}" master:gh-pages > /dev/null 2>&1
-    - cd ..
-
-
-    # build bundle
-    - rm -r -f ./dist; npm run bundle
-
-    # deploy demo to gh pages
-    - cp package.json ./dist/package.json
-    - cd ./dist
-    - git init
-    - git config user.name "Travis CI"
-    - git config user.email "me@platane.me"
-    - git add .
-    - git commit -m "Release"
-    - git push --force --quiet "https://${GH_TOKEN}@${GH_REF}" master:release > /dev/null 2>&1
-    - cd ..
+    # push to release branch
+    - test $TRAVIS_BRANCH = "master" && ./script/release.sh
