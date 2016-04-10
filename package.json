@@ -1,6 +1,6 @@
 {
     "name": "sugiyama-graph-drawing",
-    "version": "0.1.0",
+    "version": "0.2.0",
 
     "dependencies": {
     },
@@ -25,7 +25,7 @@
     "main" : "bundle.js",
 
     "scripts": {
-        "start"         : "./node_modules/.bin/webpack-dev-server --port 8082 --content-base ./ -d",
+        "start"         : "./node_modules/.bin/webpack-dev-server --port 8083 --content-base ./ -d",
 
         "test": "env NODE_ENV=\"test\" mocha --compilers js:babel-register --recursive  --timeout 200",
         "test:watch": "npm test -- --watch --bail",

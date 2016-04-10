@@ -4,13 +4,16 @@ require('./style.css')
 import draw                     from './draw'
 import computePosition          from '../src/sugiyama'
 
-const randomGraph = (n=10, r=0.4) =>
+const randomGraph = (n=10, r=0.4, mode) =>
     Array.apply( null, new Array( n ))
        .map( (_,i) =>
             Array.apply( null, new Array( i ))
                 .map( (_,i) => i )
-                // .filter( (j,_,arr) => Math.random() > r )
-                .filter( (j,_,arr) => (1-(i-j)/arr.length) * Math.random() > r )
+                .filter( (j,_,arr) =>
+                    mode
+                        ? Math.random() > r
+                        : (1-(i-j)/arr.length) * Math.random() > r
+                )
 
        )
 const samples = [
@@ -102,6 +105,9 @@ const samples = [
     randomGraph(20,0.5),
 
     randomGraph(40,0.6),
+
+    randomGraph(40,0.9, true),
+
 ]
 
 const size = { x:400, y:400 }
@@ -109,6 +115,8 @@ const size = { x:400, y:400 }
 samples.reverse()
 
 samples
+
+    .slice( 0 )
 
     .map( graph => ({ node:graph, ...computePosition( graph ) }) )
 
