@@ -1,0 +1,35 @@
+{
+    "name": "sugiyama-graph-drawing",
+    "version": "0.1.0",
+
+    "dependencies": {
+    },
+
+    "devDependencies" : {
+        "expect": "^1.8.0",
+        "mocha": "2.4",
+        "webpack" : "1.x",
+        "webpack-dev-server" : "*",
+        "file-loader" : "0.8.x",
+        "style-loader" : "0.13.x",
+        "css-loader" : "0.23.x",
+        "html-loader" : "0.4.x",
+        "babel-loader" : "6.x",
+        "babel-polyfill" : "6.x",
+        "babel-core" : "6.x",
+        "babel-cli" : "6.x",
+        "babel-preset-es2015": "6.x",
+        "babel-preset-stage-1": "6.x"
+    },
+
+    "main" : "bundle.js",
+
+    "scripts": {
+        "start"         : "./node_modules/.bin/webpack-dev-server --port 8082 --content-base ./ -d",
+
+        "test": "env NODE_ENV=\"test\" mocha --compilers js:babel-register --recursive  --timeout 200",
+        "test:watch": "npm test -- --watch --bail",
+
+        "bundle": "env NODE_ENV=\"production\" BUNDLE=1 webpack"
+    }
+}
