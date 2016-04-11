@@ -27,3 +27,7 @@ const {graph, position } = computePosition( initialGraph )
 // position is an array such as position[ i ] is the position of the node i
 
 ```
+
+## Credit
+
+http://sydney.edu.au/engineering/it/~shhong/fab.pdf
