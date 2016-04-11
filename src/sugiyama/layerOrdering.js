@@ -1,4 +1,6 @@
 
+import {inverse} from '../basic'
+
 /**
  * assuming the graph node have been grouped by layer,
  * where for a layer N, all the node connection are located in the N+1 layer
@@ -11,9 +13,20 @@ export const layerOrdering = ( layers, graph ) => {
     if ( layers.length <= 1 )
         return layers
 
-    for ( let i=layers.length-1; i-- ; )
+    const _graph = inverse( graph )
 
-        layers[ i ] = orderLayer( layers[ i ], layers[ i+1 ], graph )
+    // start from top to bottom, init the layers with naive sorting
+    for( let i=1; i<layers.length; i++ )
+        layers[ i ] = initLayer( layers[ i ], layers[ i-1 ], _graph )
+
+    // from bottom to top, optimize the layer
+    for ( let i=layers.length-1; i-- ; )
+        orderLayer( layers[ i ], layers[ i+1 ], graph )
+
+    // from top to bottom, optimize the layer
+    for( let i=1; i<layers.length; i++ )
+        orderLayer( layers[ i ], layers[ i-1 ], _graph )
+
 
     return layers
 
@@ -68,9 +81,6 @@ const n_crossing = ( u, v, fixedLayer, graph ) => {
 
 const orderLayer = ( freeLayer, fixedLayer, graph ) => {
 
-    const layer = initLayer( freeLayer, fixedLayer, graph )
-
-
     // buble sort
     // swap position of adjacent node if it reduce the number of crossing
     for( let i=1; i<freeLayer.length; i++ )
@@ -86,6 +96,4 @@ const orderLayer = ( freeLayer, fixedLayer, graph ) => {
             }
 
         }
-
-    return layer
 }
