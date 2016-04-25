@@ -1,4 +1,5 @@
-import {layerize}       from './layering/minimizeWidth'
+// import {layerize}       from './layering/minimizeWidth'
+import {layerize}       from './layering/longuestPath'
 import {layerOrdering}  from './layerOrdering'
 import {addDummy}       from './layering/addDummy'
 import {clone}          from '../basic'
@@ -8,7 +9,6 @@ const computePosition = graph => {
 
     graph = clone( graph )
 
-    // minimize the width output
     const layers = layerize( graph )
 
     addDummy( layers, graph )
