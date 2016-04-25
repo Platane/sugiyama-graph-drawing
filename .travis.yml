@@ -1,0 +1,25 @@
+language: node_js
+
+sudo: false
+
+branches:
+    only:
+        - master
+        - dev
+
+git:
+    depth: 1
+
+node_js:
+    - "5"
+
+before_script:
+    - chmod -R +x script
+
+after_success:
+
+    # deploy demo
+    - test $TRAVIS_BRANCH = "master" && script/deploy-gh-pages.sh
+
+    # push to release branch
+    - test $TRAVIS_BRANCH = "master" && script/release.sh
