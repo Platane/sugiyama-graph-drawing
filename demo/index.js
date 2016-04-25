@@ -2,7 +2,7 @@ require('file?name=index.html!./index.html')
 require('./style.css')
 
 import draw                     from './draw'
-import computePosition          from '../src/sugiyama'
+import {computePosition}        from '../src'
 
 const randomGraph = (n=10, r=0.4, mode) =>
     Array.apply( null, new Array( n ))

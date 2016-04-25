@@ -31,5 +31,13 @@ export const pathGraph = ( graph, n=graph.length ) =>
 
 
 import computePosition_ from './sugiyama'
+import compute          from './forceEngine'
 
-export const computePosition = computePosition_
+export const computePosition = baseGraph => {
+
+    let { graph, position } = computePosition_( baseGraph )
+
+    position = compute( graph, position, baseGraph.length )
+
+    return { graph, position }
+}
